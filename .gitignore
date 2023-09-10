@@ -1,7 +1,6 @@
 bin/
 obj/
 *.cbp
-*.cpp
 *.depend
 *.layout
 *.xml
