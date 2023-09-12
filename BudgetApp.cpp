@@ -30,6 +30,9 @@ void BudgetApp::showOptionsFromMainMenu() {
             char choice = menu.selectOptionFromUserMenu();
 
             switch (choice) {
+            case '1':
+                budgetManager->addIncome();
+                break;
             case '6':
                 userManager.changePasswordLoggedInUser();
                 break;

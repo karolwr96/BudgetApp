@@ -6,6 +6,7 @@
 
 #include "Income.h"
 #include "Expense.h"
+#include "DateFunctions.h"
 
 using namespace std;
 
@@ -13,7 +14,8 @@ class BudgetManager {
 vector <Income> incomes;
 vector <Expense> expenses;
 
-
+public:
+    void addIncome();
 };
 
 #endif
