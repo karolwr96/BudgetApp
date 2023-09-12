@@ -33,6 +33,9 @@ void BudgetApp::showOptionsFromMainMenu() {
             case '1':
                 budgetManager->addIncome();
                 break;
+            case '2':
+                budgetManager->showAllIncome();
+                break;
             case '6':
                 userManager.changePasswordLoggedInUser();
                 break;

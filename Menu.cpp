@@ -27,6 +27,7 @@ char Menu::selectOptionFromUserMenu() {
     system("cls");
     cout << " .: User Menu :." << endl << endl;
     cout << "1. Add income." << endl;
+    cout << "2. Show all incomes." << endl;
     cout << "2. Add expense." << endl;
     cout << "3. Balance for the current month." << endl;
     cout << "4. Previous month's balance." << endl;

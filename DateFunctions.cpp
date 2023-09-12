@@ -13,10 +13,6 @@ string DateFunctions::loadCurrentDate() {
     currentMonth = checkFormat(currentMonth);
     currentDay = checkFormat(currentDay);
 
-    cout << currentYear << endl;
-    cout << currentMonth << endl;
-    cout << currentDay << endl;
-
     currentDate = currentYear + currentMonth + currentDay;
 
     return currentDate;
