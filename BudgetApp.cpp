@@ -12,7 +12,7 @@ void BudgetApp::showOptionsFromMainMenu() {
             case '2':
                 userManager.loginUser();
                 if (userManager.getIdLoggedInUser() > 0) {
-                    budgetManager = new BudgetManager;
+                    budgetManager = new BudgetManager(userManager.getIdLoggedInUser());
                 }
                 break;
             case '3':

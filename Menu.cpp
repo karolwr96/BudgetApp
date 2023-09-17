@@ -11,7 +11,6 @@ char Menu::selectOptionFromMainMenu() {
     cout << "9. Exit from the programm." << endl << endl;
     cout << "Your choice: ";
     choice = AuxiliaryFunctions::loadCharacter();
-
     return choice;
 }
 
@@ -38,7 +37,6 @@ char Menu::selectOptionFromUserMenu() {
     cout << "8. Exit from the programm." << endl << endl;
     cout << "Your choice: ";
     choice = AuxiliaryFunctions::loadCharacter();
-
     return choice;
 }
 

@@ -1,9 +1,10 @@
 #include "AuxiliaryFunctions.h"
 
 string AuxiliaryFunctions::loadLine() {
-    string wejscie = "";
-    getline(cin, wejscie);
-    return wejscie;
+    cin.sync();
+    string output = "";
+    getline(cin, output);
+    return output;
 }
 
 char AuxiliaryFunctions::loadCharacter() {
@@ -22,4 +23,15 @@ char AuxiliaryFunctions::loadCharacter() {
         }
     }
     return character;
+}
+
+string AuxiliaryFunctions::changeCommaToDot(string inscription) {
+    string formattedText = "";
+    for (unsigned int i = 0; i < inscription.length(); i++) {
+        if (inscription[i] == ',') {
+            inscription[i] = '.';
+        }
+        formattedText += inscription[i];
+    }
+    return formattedText;
 }
