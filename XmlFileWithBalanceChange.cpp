@@ -1,33 +1,39 @@
-#include "XmlFileWithUsers.h"
+#include "XmlFileWithBalanceChange.h"
 
-void XmlFileWithUsers::loadFileToProgramm() {
-    bool fileExists = xmlUsers.Load("users.xml");
+void XmlFileWithBalanceChange::loadFilesToProgramm() {
+    bool fileWithIncomesExists = xmlIncomes.Load("incomes.xml");
+    bool fileWithExpensesExists = xmlExpenses.Load("expenses.xml");
 
-    if (!fileExists) {
-        xmlUsers.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xmlUsers.AddElem("Users");
-        xmlUsers.Save("users.xml");
+    if (!fileWithIncomesExists) {
+        xmlIncomes.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xmlIncomes.AddElem("Incomes");
+        xmlIncomes.Save("incomes.xml");
     }
-    return;
-};
 
-void XmlFileWithUsers::addUserToFile(User newUser) {
-    xmlUsers.ResetPos();
-    xmlUsers.FindElem();
-    xmlUsers.IntoElem();
-
-    xmlUsers.AddElem("User");
-    xmlUsers.IntoElem();
-    xmlUsers.AddElem("UserId", newUser.getId());
-    xmlUsers.AddElem("Login", newUser.getLogin());
-    xmlUsers.AddElem("Password", newUser.getPassword());
-    xmlUsers.AddElem("Name", newUser.getName());
-    xmlUsers.AddElem("Surname", newUser.getSurname());
-
-    xmlUsers.Save("users.xml");
+    if (!fileWithExpensesExists) {
+        xmlExpenses.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xmlExpenses.AddElem("Expenses");
+        xmlExpenses.Save("expenses.xml");
+    }
     return;
 }
 
+void XmlFileWithBalanceChange::addIncomeToFile(Income newIncome) {
+    xmlIncomes.ResetPos();
+    xmlIncomes.FindElem();
+    xmlIncomes.IntoElem();
+
+    xmlIncomes.AddElem("UserId", 2);
+    xmlIncomes.IntoElem();
+    xmlIncomes.AddElem("IncomeId", 2);
+    xmlIncomes.AddElem("Date", newIncome.getDate());
+    xmlIncomes.AddElem("Item", newIncome.getItem());
+    xmlIncomes.AddElem("Amount", newIncome.getAmount());
+
+    xmlIncomes.Save("incomes.xml");
+    return;
+}
+/*
 vector <User> XmlFileWithUsers::loadUsersFromXmlFile() {
     User loadedUser;
     vector <User> usersFromFile;
@@ -71,4 +77,4 @@ void XmlFileWithUsers::changePasswordInFile(string newPassword, string userLogin
         }
     }
     xmlUsers.Save("users.xml");
-}
+}*/

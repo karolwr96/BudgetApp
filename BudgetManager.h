@@ -12,6 +12,7 @@
 #include "DateFunctions.h"
 #include "AuxiliaryFunctions.h"
 #include "UserManager.h"
+#include "XmlFileWithBalanceChange.h"
 
 using namespace std;
 
@@ -19,6 +20,9 @@ class BudgetManager {
     const int ID_LOGGED_IN_USER;
     vector <Income> incomes;
     vector <Expense> expenses;
+
+    XmlFileWithBalanceChange xmlIncomes;
+    XmlFileWithBalanceChange xmlExpenses;
 
     double roundingNumber(string numberToRound);
     double inputNumber();

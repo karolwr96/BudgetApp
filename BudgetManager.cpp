@@ -33,6 +33,8 @@ void::BudgetManager::addIncome() {
     newIncome.setIncomeId (123);
 
     incomes.push_back(newIncome);
+
+    xmlIncomes.addIncomeToFile(newIncome);
     cout << endl << "Income added successfully." << endl;
     system("pause");
 
