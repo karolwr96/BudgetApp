@@ -14,10 +14,9 @@ void::BudgetManager::addIncome() {
     case '1':
         newIncome.setDate(DateFunctions::loadCurrentDate());
         break;
-
-    //case '2':
-    //newIncome.setDate(DateFunctions::loadCurrentDate());
-    // break;
+    case '2':
+        newIncome.setDate(DateFunctions::enterDateFromKeyboard());
+        break;
     default:
         cout << endl << "There is no option like this on the menu." << endl << endl;
         system("pause");
