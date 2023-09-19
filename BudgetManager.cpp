@@ -4,8 +4,8 @@ void::BudgetManager::addIncome() {
     Income newIncome;
     char choice;
 
-    cout << endl << "1. Add today's expense." << endl;
-    cout << "2. Add an expense with a another date." << endl << endl;
+    cout << endl << "1. Add today's income." << endl;
+    cout << "2. Add an income with a another date." << endl << endl;
 
     cout << "Your choice: ";
     cin >> choice ;
@@ -41,18 +41,76 @@ void::BudgetManager::addIncome() {
     return;
 }
 
-void BudgetManager::showAllIncome() {
-    for (unsigned int i = 0; i < incomes.size(); i++) {
-        cout << "Income id " << incomes[i].getIncomeId() << endl;
-        cout << "User id "<< incomes[i].getUserId() << endl;
-        cout << "Date "<< incomes[i].getDate() << endl;
-        cout << "Item "<< incomes[i].getItem() << endl;
-        cout << "Amount "<< incomes[i].getAmount() << endl;
-        cout << endl;
+void BudgetManager::addExpense() {
+    Expense newExpense;
+    char choice;
+
+    cout << endl << "1. Add today's expense." << endl;
+    cout << "2. Add an expense with a another date." << endl << endl;
+
+    cout << "Your choice: ";
+    cin >> choice ;
+
+    switch (choice) {
+    case '1':
+        newExpense.setDate(DateFunctions::loadCurrentDate());
+        break;
+    case '2':
+        newExpense.setDate(DateFunctions::enterDateFromKeyboard());
+        break;
+    default:
+        cout << endl << "There is no option like this on the menu." << endl << endl;
+        system("pause");
+        break;
+    }
+
+    cout << endl <<  "Please enter the source of expense: " << endl;
+    newExpense.setItem(AuxiliaryFunctions::loadLine());
+
+    cout << endl;
+    newExpense.setAmount(inputNumber());
+
+    newExpense.setUserId(ID_LOGGED_IN_USER);
+    newExpense.setExpenseId (123);
+
+    expenses.push_back(newExpense);
+
+    xmlExpenses.addExpenseToFile(newExpense);
+    cout << endl << "Expense added successfully." << endl;
+    system("pause");
+
+    return;
+}
+void BudgetManager::showAllIncomes() {
+    if (incomes.empty()) {
+        cout << "No data." << endl << endl;
+    } else {
+        for (unsigned int i = 0; i < incomes.size(); i++) {
+            DateFunctions::printDateInCorrectFormat(incomes[i].getDate());
+            cout << endl << "Item: " << incomes[i].getItem() << endl;
+            cout << "Amount: " << incomes[i].getAmount() << endl;
+            cout << endl;
+        }
     }
     system("pause");
     return;
 }
+
+void BudgetManager::showAllExpenses() {
+    if (expenses.empty()) {
+        cout << "No data." << endl << endl;
+    } else {
+        for (unsigned int i = 0; i < expenses.size(); i++) {
+            DateFunctions::printDateInCorrectFormat(expenses[i].getDate());
+            cout << endl << "Item: " << expenses[i].getItem() << endl;
+            cout << "Amount: " << expenses[i].getAmount() << endl;
+            cout << endl;
+        }
+    }
+    system("pause");
+    return;
+}
+
 
 double BudgetManager::roundingNumber(string numberToRound) {
     string roundedNumber = "";
@@ -76,7 +134,7 @@ double BudgetManager::inputNumber() {
         sum = "";
         isFormatOk = true;
 
-        cout << "Please enter the amount of income: " << endl;
+        cout << "Please enter the amount: " << endl;
         sum = AuxiliaryFunctions::loadLine();
         sum = AuxiliaryFunctions::changeCommaToDot(sum);
 

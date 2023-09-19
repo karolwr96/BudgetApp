@@ -21,14 +21,10 @@ public :
     XmlFileWithBalanceChange() {
         loadFilesToProgramm();
     }
-    // vector <User> loadUsersFromXmlFile();
     void addIncomeToFile(Income newIncome);
-    vector <Income> loadIncomesFromXmlFile(int idLoggedInUser);
-
-
     void addExpenseToFile(Expense newExpense);
-
-
+    vector <Income> loadIncomesFromXmlFile(int idLoggedInUser);
+    vector <Expense> loadExpensesFromXmlFile(int idLoggedInUser);
 };
 
 #endif

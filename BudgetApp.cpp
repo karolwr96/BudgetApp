@@ -18,7 +18,7 @@ void BudgetApp::showOptionsFromMainMenu() {
             case '3':
                 userManager.showAllUsers();
                 break;
-            case '9':
+            case '0':
                 menu.closeTheProgram();
                 break;
             default:
@@ -34,17 +34,23 @@ void BudgetApp::showOptionsFromMainMenu() {
                 budgetManager->addIncome();
                 break;
             case '2':
-                budgetManager->showAllIncome();
+                budgetManager->addExpense();
                 break;
-            case '6':
+            case '3':
+                budgetManager->showAllIncomes();
+                break;
+            case '4':
+                budgetManager->showAllExpenses();
+                break;
+            case '8':
                 userManager.changePasswordLoggedInUser();
                 break;
-            case '7':
+            case '9':
                 userManager.logOutUser();
                 delete budgetManager;
                 budgetManager = NULL;
                 break;
-            case '8':
+            case '0':
                 menu.closeTheProgram();
                 break;
             default:

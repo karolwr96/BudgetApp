@@ -35,6 +35,23 @@ void XmlFileWithBalanceChange::addIncomeToFile(Income newIncome) {
     return;
 }
 
+void XmlFileWithBalanceChange::addExpenseToFile(Expense newExpense) {
+    xmlExpenses.ResetPos();
+    xmlExpenses.FindElem();
+    xmlExpenses.IntoElem();
+
+    xmlExpenses.AddElem("Expense");
+    xmlExpenses.IntoElem();
+    xmlExpenses.AddElem("UserId", newExpense.getUserId());
+    xmlExpenses.AddElem("ExpenseId", 2);
+    xmlExpenses.AddElem("Date", newExpense.getDate());
+    xmlExpenses.AddElem("Item", newExpense.getItem());
+    xmlExpenses.AddElem("Amount", newExpense.getAmount());
+
+    xmlExpenses.Save("expenses.xml");
+    return;
+}
+
 vector <Income> XmlFileWithBalanceChange::loadIncomesFromXmlFile(int idLoggedInUser) {
     Income loadedIncome;
     vector <Income> incomesFromFile;
@@ -66,3 +83,33 @@ vector <Income> XmlFileWithBalanceChange::loadIncomesFromXmlFile(int idLoggedInU
     return incomesFromFile;
 }
 
+vector <Expense> XmlFileWithBalanceChange::loadExpensesFromXmlFile(int idLoggedInUser) {
+    Expense loadedExpense;
+    vector <Expense> expensesFromFile;
+
+    xmlExpenses.ResetPos();
+    xmlExpenses.FindElem();
+    xmlExpenses.IntoElem();
+
+    while ( xmlExpenses.FindElem("Expense") ) {
+        xmlExpenses.FindChildElem("UserId");
+        if ( xmlExpenses.GetChildData() == to_string(idLoggedInUser)) {
+            loadedExpense.ChangeOfBallance::setUserId(stoi(xmlExpenses.GetChildData()));
+
+            xmlExpenses.FindChildElem("ExpenseId");
+            loadedExpense.setExpenseId(stoi(xmlExpenses.GetChildData()));
+
+            xmlExpenses.FindChildElem("Date");
+            loadedExpense.setDate(xmlExpenses.GetChildData());
+
+            xmlExpenses.FindChildElem("Item");
+            loadedExpense.setItem(xmlExpenses.GetChildData());
+
+            xmlExpenses.FindChildElem("Amount");
+            loadedExpense.setAmount(stof(xmlExpenses.GetChildData()));
+
+            expensesFromFile.push_back(loadedExpense);
+        }
+    }
+    return expensesFromFile;
+}

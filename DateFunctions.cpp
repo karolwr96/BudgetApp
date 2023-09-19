@@ -14,7 +14,6 @@ string DateFunctions::loadCurrentDate() {
     currentDay = checkFormat(currentDay);
 
     currentDate = currentYear + currentMonth + currentDay;
-
     return currentDate;
 }
 
@@ -73,7 +72,6 @@ int DateFunctions::howManyDaysAreInMonth(string yearInString, string monthInStri
             numberOfDays = 29;
     } else
         numberOfDays = 31;
-
     return numberOfDays;
 }
 
@@ -169,14 +167,25 @@ string DateFunctions::inputDay(string enteredYear, string enteredMonth) {
 
 string DateFunctions::enterDateFromKeyboard() {
     string year = "", month = "", day = "", date = "";
-
     year = inputYear();
     month = inputMonth(year);
     day = inputDay(year, month);
-
     date = year + month + day;
-    cout << "Date entered: " << year << "." << month << "." << day << endl;
-
     return date;
 }
 
+void DateFunctions::printDateInCorrectFormat(string date) {
+    cout << "Date: ";
+    for (unsigned int i = 0; i < 4; i++) {
+        cout << date[i];
+    }
+    cout << "-";
+    for (unsigned int i = 4; i < 6; i++) {
+        cout << date[i];
+    }
+    cout << "-";
+    for (unsigned int i = 6; i <= 7; i++) {
+        cout << date[i];
+    }
+    return;
+}

@@ -17,7 +17,7 @@ public:
     void setUserId(int id);
     void setDate(string newDate);
     void setItem(string newItem);
-    void setAmount(float newAmountmount);
+    void setAmount(float newAmount);
 
     int getUserId();
     string getDate();

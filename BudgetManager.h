@@ -31,10 +31,12 @@ public:
 public :
     BudgetManager(int idLoggedInUser) : ID_LOGGED_IN_USER(idLoggedInUser) {
         incomes = xmlIncomes.loadIncomesFromXmlFile(ID_LOGGED_IN_USER);
+        expenses = xmlExpenses.loadExpensesFromXmlFile(ID_LOGGED_IN_USER);
     };
-
     void addIncome();
-    void showAllIncome();
+    void addExpense();
+    void showAllIncomes();
+    void showAllExpenses();
 };
 
 #endif

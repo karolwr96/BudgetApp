@@ -24,6 +24,7 @@ static string inputYear();
 static string inputMonth(string enteredYear);
 static string inputDay(string enteredYear, string enteredMonth);
 static string enterDateFromKeyboard();
+static void printDateInCorrectFormat(string date);
 };
 
 #endif
