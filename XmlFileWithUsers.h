@@ -21,7 +21,6 @@ public :
     vector <User> loadUsersFromXmlFile();
     void addUserToFile(User newUser);
     void changePasswordInFile(string newPassword, string userLogin);
-
 };
 
 #endif

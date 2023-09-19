@@ -30,7 +30,9 @@ class BudgetManager {
 public:
 public :
     BudgetManager(int idLoggedInUser) : ID_LOGGED_IN_USER(idLoggedInUser) {
+        incomes = xmlIncomes.loadIncomesFromXmlFile(ID_LOGGED_IN_USER);
     };
+
     void addIncome();
     void showAllIncome();
 };

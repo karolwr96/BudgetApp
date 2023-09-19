@@ -23,8 +23,9 @@ void XmlFileWithBalanceChange::addIncomeToFile(Income newIncome) {
     xmlIncomes.FindElem();
     xmlIncomes.IntoElem();
 
-    xmlIncomes.AddElem("UserId", 2);
+    xmlIncomes.AddElem("Income");
     xmlIncomes.IntoElem();
+    xmlIncomes.AddElem("UserId", newIncome.getUserId());
     xmlIncomes.AddElem("IncomeId", 2);
     xmlIncomes.AddElem("Date", newIncome.getDate());
     xmlIncomes.AddElem("Item", newIncome.getItem());
@@ -33,48 +34,35 @@ void XmlFileWithBalanceChange::addIncomeToFile(Income newIncome) {
     xmlIncomes.Save("incomes.xml");
     return;
 }
-/*
-vector <User> XmlFileWithUsers::loadUsersFromXmlFile() {
-    User loadedUser;
-    vector <User> usersFromFile;
 
-    xmlUsers.ResetPos();
-    xmlUsers.FindElem();
-    xmlUsers.IntoElem();
+vector <Income> XmlFileWithBalanceChange::loadIncomesFromXmlFile(int idLoggedInUser) {
+    Income loadedIncome;
+    vector <Income> incomesFromFile;
 
-    while ( xmlUsers.FindElem("User") ) {
-        xmlUsers.FindChildElem("UserId");
-        loadedUser.setId(stoi(xmlUsers.GetChildData()));
+    xmlIncomes.ResetPos();
+    xmlIncomes.FindElem();
+    xmlIncomes.IntoElem();
 
-        xmlUsers.FindChildElem("Login");
-        loadedUser.setLogin(xmlUsers.GetChildData());
+    while ( xmlIncomes.FindElem("Income") ) {
+        xmlIncomes.FindChildElem("UserId");
+        if ( xmlIncomes.GetChildData() == to_string(idLoggedInUser)) {
+            loadedIncome.Income::setUserId(stoi(xmlIncomes.GetChildData()));
 
-        xmlUsers.FindChildElem("Password");
-        loadedUser.setPassword(xmlUsers.GetChildData());
+            xmlIncomes.FindChildElem("IncomeId");
+            loadedIncome.setIncomeId(stoi(xmlIncomes.GetChildData()));
 
-        xmlUsers.FindChildElem("Name");
-        loadedUser.setName(xmlUsers.GetChildData());
+            xmlIncomes.FindChildElem("Date");
+            loadedIncome.setDate(xmlIncomes.GetChildData());
 
-        xmlUsers.FindChildElem("Surname");
-        loadedUser.setSurname(xmlUsers.GetChildData());
+            xmlIncomes.FindChildElem("Item");
+            loadedIncome.setItem(xmlIncomes.GetChildData());
 
-        usersFromFile.push_back(loadedUser);
-    }
-    return usersFromFile;
-}
+            xmlIncomes.FindChildElem("Amount");
+            loadedIncome.setAmount(stof(xmlIncomes.GetChildData()));
 
-void XmlFileWithUsers::changePasswordInFile(string newPassword, string userLogin) {
-    xmlUsers.ResetPos();
-    xmlUsers.FindElem();
-    xmlUsers.IntoElem();
-    while ( xmlUsers.FindElem("User") ) {
-        xmlUsers.FindChildElem("Login");
-        if ( xmlUsers.GetChildData() == userLogin ) {
-            xmlUsers.FindChildElem("Password");
-            xmlUsers.IntoElem();
-            xmlUsers.SetData(newPassword);
-            break;
+            incomesFromFile.push_back(loadedIncome);
         }
     }
-    xmlUsers.Save("users.xml");
-}*/
+    return incomesFromFile;
+}
+

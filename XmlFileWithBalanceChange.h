@@ -8,6 +8,7 @@
 #include "Markup.h"
 #include "Income.h"
 #include "Expense.h"
+#include "ChangeOfBallance.h"
 
 using namespace std;
 
@@ -22,6 +23,9 @@ public :
     }
     // vector <User> loadUsersFromXmlFile();
     void addIncomeToFile(Income newIncome);
+    vector <Income> loadIncomesFromXmlFile(int idLoggedInUser);
+
+
     void addExpenseToFile(Expense newExpense);
 
 
