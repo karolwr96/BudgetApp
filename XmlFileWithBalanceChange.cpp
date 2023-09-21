@@ -29,7 +29,7 @@ void XmlFileWithBalanceChange::addIncomeToFile(Income newIncome) {
     xmlIncomes.AddElem("IncomeId", 2);
     xmlIncomes.AddElem("Date", newIncome.getDate());
     xmlIncomes.AddElem("Item", newIncome.getItem());
-    xmlIncomes.AddElem("Amount", newIncome.getAmount());
+    xmlIncomes.AddElem("Amount", to_string(newIncome.getAmount()));
 
     xmlIncomes.Save("incomes.xml");
     return;
@@ -46,7 +46,7 @@ void XmlFileWithBalanceChange::addExpenseToFile(Expense newExpense) {
     xmlExpenses.AddElem("ExpenseId", 2);
     xmlExpenses.AddElem("Date", newExpense.getDate());
     xmlExpenses.AddElem("Item", newExpense.getItem());
-    xmlExpenses.AddElem("Amount", newExpense.getAmount());
+    xmlExpenses.AddElem("Amount", to_string(newExpense.getAmount()));
 
     xmlExpenses.Save("expenses.xml");
     return;
@@ -69,7 +69,7 @@ vector <Income> XmlFileWithBalanceChange::loadIncomesFromXmlFile(int idLoggedInU
             loadedIncome.setIncomeId(stoi(xmlIncomes.GetChildData()));
 
             xmlIncomes.FindChildElem("Date");
-            loadedIncome.setDate(xmlIncomes.GetChildData());
+            loadedIncome.setDate(stoi(xmlIncomes.GetChildData()));
 
             xmlIncomes.FindChildElem("Item");
             loadedIncome.setItem(xmlIncomes.GetChildData());
@@ -100,7 +100,7 @@ vector <Expense> XmlFileWithBalanceChange::loadExpensesFromXmlFile(int idLoggedI
             loadedExpense.setExpenseId(stoi(xmlExpenses.GetChildData()));
 
             xmlExpenses.FindChildElem("Date");
-            loadedExpense.setDate(xmlExpenses.GetChildData());
+            loadedExpense.setDate(stoi(xmlExpenses.GetChildData()));
 
             xmlExpenses.FindChildElem("Item");
             loadedExpense.setItem(xmlExpenses.GetChildData());

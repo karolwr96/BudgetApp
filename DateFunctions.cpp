@@ -1,6 +1,6 @@
 #include "DateFunctions.h"
 
-string DateFunctions::loadCurrentDate() {
+int DateFunctions::loadCurrentDate() {
     string currentDate = "", currentYear = "", currentMonth = "", currentDay = "";
 
     SYSTEMTIME st;
@@ -14,7 +14,8 @@ string DateFunctions::loadCurrentDate() {
     currentDay = checkFormat(currentDay);
 
     currentDate = currentYear + currentMonth + currentDay;
-    return currentDate;
+    int dateToReturn = stoi(currentDate);
+    return dateToReturn;
 }
 
 string DateFunctions::checkFormat(string dataToCheck) {
@@ -165,27 +166,30 @@ string DateFunctions::inputDay(string enteredYear, string enteredMonth) {
     return day;
 }
 
-string DateFunctions::enterDateFromKeyboard() {
+int DateFunctions::enterDateFromKeyboard() {
     string year = "", month = "", day = "", date = "";
     year = inputYear();
     month = inputMonth(year);
     day = inputDay(year, month);
     date = year + month + day;
-    return date;
+
+    int dateToReturn = stoi(date);
+    return dateToReturn;
 }
 
-void DateFunctions::printDateInCorrectFormat(string date) {
+void DateFunctions::printDateInCorrectFormat(int date) {
+    string dateToPrint = to_string(date);
     cout << "Date: ";
     for (unsigned int i = 0; i < 4; i++) {
-        cout << date[i];
+        cout << dateToPrint[i];
     }
     cout << "-";
     for (unsigned int i = 4; i < 6; i++) {
-        cout << date[i];
+        cout << dateToPrint[i];
     }
     cout << "-";
     for (unsigned int i = 6; i <= 7; i++) {
-        cout << date[i];
+        cout << dateToPrint[i];
     }
     return;
 }

@@ -5,7 +5,7 @@ void ChangeOfBallance::setUserId(int id) {
     return;
 }
 
-void ChangeOfBallance::setDate(string newDate) {
+void ChangeOfBallance::setDate(int newDate) {
     date = newDate;
     return;
 }
@@ -24,7 +24,7 @@ int ChangeOfBallance::getUserId() {
     return userId;
 }
 
-string ChangeOfBallance::getDate() {
+int ChangeOfBallance::getDate() {
     return date;
 }
 

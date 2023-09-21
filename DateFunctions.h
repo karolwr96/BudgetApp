@@ -13,7 +13,7 @@ using namespace std;
 class DateFunctions {
 public :
 
-static string loadCurrentDate();
+static int loadCurrentDate();
 static string checkFormat(string dataToCheck);
 static int howManyDaysAreInMonth(string yearInString, string monthInString);
 static int loadCurrentYear();
@@ -23,8 +23,8 @@ static int loadCurrentDay();
 static string inputYear();
 static string inputMonth(string enteredYear);
 static string inputDay(string enteredYear, string enteredMonth);
-static string enterDateFromKeyboard();
-static void printDateInCorrectFormat(string date);
+static int enterDateFromKeyboard();
+static void printDateInCorrectFormat(int date);
 };
 
 #endif
