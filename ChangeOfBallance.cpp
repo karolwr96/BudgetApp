@@ -25,9 +25,8 @@ int ChangeOfBallance::getUserId() {
 }
 
 int ChangeOfBallance::getDate() {
-    return date;
+    return this -> date;
 }
-
 string ChangeOfBallance::getItem() {
     return item;
 }

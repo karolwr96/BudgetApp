@@ -29,7 +29,6 @@ public :
     int getIdLoggedInUser();
     void changePasswordLoggedInUser();
     void logOutUser();
-
     void showAllUsers();
 };
 

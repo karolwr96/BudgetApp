@@ -5,6 +5,7 @@
 #include <vector>
 #include <iomanip>
 #include <string>
+#include <algorithm>
 
 #include "ChangeOfBallance.h"
 #include "Income.h"
@@ -27,8 +28,10 @@ class BudgetManager {
     double roundingNumber(string numberToRound);
     double inputNumber();
 
+    void sortIncomeVector(vector <Income> &changeOfDataVector);
+    void sortExpenseVector(vector <Expense> &changeOfDataVector);
+
 public:
-public :
     BudgetManager(int idLoggedInUser) : ID_LOGGED_IN_USER(idLoggedInUser) {
         incomes = xmlIncomes.loadIncomesFromXmlFile(ID_LOGGED_IN_USER);
         expenses = xmlExpenses.loadExpensesFromXmlFile(ID_LOGGED_IN_USER);

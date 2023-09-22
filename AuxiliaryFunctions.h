@@ -10,11 +10,6 @@ public:
     static string loadLine();
     static char loadCharacter();
     static string changeCommaToDot(string inscription);
-
-
-
-
-
 };
 
 #endif

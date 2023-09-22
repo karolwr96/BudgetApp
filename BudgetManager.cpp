@@ -78,13 +78,15 @@ void BudgetManager::addExpense() {
     xmlExpenses.addExpenseToFile(newExpense);
     cout << endl << "Expense added successfully." << endl;
     system("pause");
-
     return;
 }
 void BudgetManager::showAllIncomes() {
     if (incomes.empty()) {
         cout << "No data." << endl << endl;
+        system("pause");
+        return;
     } else {
+        sortIncomeVector(incomes);
         for (unsigned int i = 0; i < incomes.size(); i++) {
             DateFunctions::printDateInCorrectFormat(incomes[i].getDate());
             cout << endl << "Item: " << incomes[i].getItem() << endl;
@@ -99,7 +101,10 @@ void BudgetManager::showAllIncomes() {
 void BudgetManager::showAllExpenses() {
     if (expenses.empty()) {
         cout << "No data." << endl << endl;
+        system("pause");
+        return;
     } else {
+        sortExpenseVector(expenses);
         for (unsigned int i = 0; i < expenses.size(); i++) {
             DateFunctions::printDateInCorrectFormat(expenses[i].getDate());
             cout << endl << "Item: " << expenses[i].getItem() << endl;
@@ -110,7 +115,6 @@ void BudgetManager::showAllExpenses() {
     system("pause");
     return;
 }
-
 
 double BudgetManager::roundingNumber(string numberToRound) {
     string roundedNumber = "";
@@ -152,7 +156,6 @@ double BudgetManager::inputNumber() {
                 }
             }
         }
-
         for (unsigned int i = 0; i < checkedNumberWithoutDots.length(); i++) {
             if (!isdigit(checkedNumberWithoutDots[i])) {
                 isFormatOk = false;
@@ -167,3 +170,18 @@ double BudgetManager::inputNumber() {
     double amount = roundingNumber(sum);
     return amount;
 }
+
+void BudgetManager::sortIncomeVector(vector <Income> &changeOfDataVector) {
+    sort(std::begin(changeOfDataVector), std::end(changeOfDataVector),
+    [](ChangeOfBallance& left, ChangeOfBallance& right) {
+        return left.getDate() < right.getDate();
+    });
+}
+
+void BudgetManager::sortExpenseVector(vector <Expense> &changeOfDataVector) {
+    sort(std::begin(changeOfDataVector), std::end(changeOfDataVector),
+    [](ChangeOfBallance& left, ChangeOfBallance& right) {
+        return left.getDate() < right.getDate();
+    });
+}
+
