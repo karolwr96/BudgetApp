@@ -86,6 +86,7 @@ void BudgetManager::showAllIncomes() {
         system("pause");
         return;
     } else {
+        cout << endl << ANSI_BOLD << "Revenues: " << ANSI_RESET << endl;
         sortIncomeVector(incomes);
         for (unsigned int i = 0; i < incomes.size(); i++) {
             DateFunctions::printDateInCorrectFormat(incomes[i].getDate());
@@ -105,6 +106,7 @@ void BudgetManager::showAllExpenses() {
         return;
     } else {
         sortExpenseVector(expenses);
+        cout << endl << ANSI_BOLD << "Expenses: " << ANSI_RESET << endl;
         for (unsigned int i = 0; i < expenses.size(); i++) {
             DateFunctions::printDateInCorrectFormat(expenses[i].getDate());
             cout << endl << "Item: " << expenses[i].getItem() << endl;
@@ -185,22 +187,28 @@ void BudgetManager::sortExpenseVector(vector <Expense> &changeOfDataVector) {
     });
 }
 
-void BudgetManager::showBalanceSheetForCurrentMonth() {
+void BudgetManager::showTotalBalance(double revenues, double outlay) {
+    double sum = revenues - outlay;
+    cout << "Total income: " << revenues << endl;
+    cout << "Total expenses: " << outlay << endl;
+    cout << endl << "Balance: " << sum << endl << endl;
+    return;
+}
+
+void BudgetManager::showBalanceSheet(int startingDate, int endingDate) {
     if (incomes.empty() & expenses.empty()) {
         cout << "No data." << endl << endl;
         system("pause");
         return;
     } else {
-        int cutOffDate = stoi(to_string(DateFunctions::loadCurrentYear()) + DateFunctions::checkFormat(to_string(DateFunctions::loadCurrentMonth())) + "01");
-        double revenues = 0;
-        double outlay = 0;
+        double revenues = 0, outlay = 0;
 
         sortIncomeVector(incomes);
         sortExpenseVector(expenses);
 
-        cout << endl << "Revenues: " << endl;
+        cout << endl << ANSI_BOLD << "Revenues: " << ANSI_RESET << endl;
         for (unsigned int i = 0; i < incomes.size(); i++) {
-            if (incomes[i].getDate() >= cutOffDate) {
+            if ((incomes[i].getDate() >= startingDate) & (incomes[i].getDate() <= endingDate)) {
                 DateFunctions::printDateInCorrectFormat(incomes[i].getDate());
                 revenues += incomes[i].getAmount();
                 cout << endl << "Item: " << incomes[i].getItem() << endl;
@@ -208,9 +216,9 @@ void BudgetManager::showBalanceSheetForCurrentMonth() {
                 cout << endl;
             }
         }
-        cout << "Expenses: " << endl;
+        cout << endl << ANSI_BOLD << "Expenses: " << ANSI_RESET << endl;
         for (unsigned int i = 0; i < expenses.size(); i++) {
-            if (expenses[i].getDate() >= cutOffDate) {
+            if ((expenses[i].getDate() >= startingDate) & (expenses[i].getDate() <= endingDate)) {
                 DateFunctions::printDateInCorrectFormat(expenses[i].getDate());
                 outlay += expenses[i].getAmount();
                 cout << endl << "Item: " << expenses[i].getItem() << endl;
@@ -218,15 +226,40 @@ void BudgetManager::showBalanceSheetForCurrentMonth() {
                 cout << endl;
             }
         }
+        cout << "Balance from: " << endl;
+        DateFunctions::printDateInCorrectFormat(startingDate);
+        cout << " to" << endl;
+        DateFunctions::printDateInCorrectFormat(endingDate);
+        cout << endl << endl;
         showTotalBalance(revenues,outlay);
         system("pause");
     }
+    return;
 }
 
-void BudgetManager::showTotalBalance(double revenues, double outlay) {
-    double sum = revenues - outlay;
-    cout << "Total income: " << revenues << endl;
-    cout << "Total expenses: " << outlay << endl;
-    cout << endl << "Balance: " << sum << endl << endl;
+void BudgetManager::showBalanceSheetForCurrentMonth() {
+    int startingDate = DateFunctions::loadStartDateOfCurrentMonth();
+    int endingDate = DateFunctions::loadEndDateOfCurrentMonth();
+    showBalanceSheet(startingDate, endingDate);
+    return;
 }
 
+void BudgetManager::showBalanceSheetForPreviousMonth() {
+    int startingDate = DateFunctions::loadStartDateOfPreviousMonth();
+    int endingDate = DateFunctions::loadEndDateOfPreviousMonth();
+    showBalanceSheet(startingDate, endingDate);
+    return;
+}
+
+void BudgetManager::showBalanceSheetForSelectedPeriod() {
+    cout << "Please enter the starting date of the interval:" << endl;
+    int startingDate = DateFunctions::enterDateFromKeyboard();
+    cout << endl << "Please enter the ending date of the interval:" << endl;
+    int endingDate = DateFunctions::enterDateFromKeyboard();
+
+    if (startingDate > endingDate) {
+        swap(startingDate, endingDate);
+    }
+    showBalanceSheet(startingDate, endingDate);
+    return;
+}

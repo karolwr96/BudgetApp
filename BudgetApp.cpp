@@ -45,6 +45,12 @@ void BudgetApp::showOptionsFromMainMenu() {
             case '5':
                 budgetManager->showBalanceSheetForCurrentMonth();
                 break;
+            case '6':
+                budgetManager->showBalanceSheetForPreviousMonth();
+                break;
+            case '7':
+                budgetManager->showBalanceSheetForSelectedPeriod();
+                break;
             case '8':
                 userManager.changePasswordLoggedInUser();
                 break;

@@ -56,6 +56,59 @@ int DateFunctions::loadCurrentDay() {
     return currentDay;
 }
 
+int DateFunctions::loadStartDateOfCurrentMonth() {
+    string startDateOfCurrenMonth = "";
+    int yearOfCurrentMonth = loadCurrentYear();
+    int currentMonth = loadCurrentMonth();
+
+    startDateOfCurrenMonth = to_string(yearOfCurrentMonth) + checkFormat(to_string(currentMonth)) + "01";
+    return stoi(startDateOfCurrenMonth);
+}
+
+int DateFunctions::loadEndDateOfCurrentMonth() {
+    string endDateOfCurrenMonth = "";
+    int yearOfCurrentMonth = loadCurrentYear();
+    int currentMonth = loadCurrentMonth();
+    int endDayOfCurrentMonth = howManyDaysAreInMonth(to_string(yearOfCurrentMonth), to_string(currentMonth));
+
+    endDateOfCurrenMonth = to_string(yearOfCurrentMonth) + checkFormat(to_string(currentMonth)) + checkFormat(to_string(endDayOfCurrentMonth));
+    return stoi(endDateOfCurrenMonth);
+}
+
+int DateFunctions::loadStartDateOfPreviousMonth() {
+    string startPreviousMonth = "";
+    int previousMonth, yearOfPreviousMonth, startDateOfPreviousMonth;
+
+    if(loadCurrentMonth() == 12) {
+        previousMonth = 01;
+        yearOfPreviousMonth = loadCurrentYear() - 1;
+    } else {
+        previousMonth = loadCurrentMonth() - 1;
+        yearOfPreviousMonth = loadCurrentYear();
+    }
+
+    startPreviousMonth = to_string(yearOfPreviousMonth) + checkFormat(to_string(previousMonth)) + "01";
+    startDateOfPreviousMonth = stoi(startPreviousMonth);
+    return startDateOfPreviousMonth;
+}
+
+int DateFunctions::loadEndDateOfPreviousMonth() {
+    string endDateOfPreviousMonth = "";
+    int previousMonth, yearOfPreviousMonth, lastDayOfPreviousMonth;
+
+    if(loadCurrentMonth() == 12) {
+        previousMonth = 01;
+        yearOfPreviousMonth = loadCurrentYear() - 1;
+    } else {
+        previousMonth = loadCurrentMonth() - 1;
+        yearOfPreviousMonth = loadCurrentYear();
+    }
+    lastDayOfPreviousMonth = howManyDaysAreInMonth(to_string(yearOfPreviousMonth), to_string(previousMonth));
+    endDateOfPreviousMonth = to_string(yearOfPreviousMonth) + checkFormat(to_string(previousMonth)) + checkFormat(to_string(lastDayOfPreviousMonth));
+
+    return stoi(endDateOfPreviousMonth);
+}
+
 int DateFunctions::howManyDaysAreInMonth(string yearInString, string monthInString) {
     int year,month, numberOfDays;
     year = stoi(yearInString);

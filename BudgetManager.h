@@ -32,6 +32,8 @@ class BudgetManager {
     void sortExpenseVector(vector <Expense> &changeOfDataVector);
     void showTotalBalance(double revenues, double outlay);
 
+    char ANSI_BOLD[9] = "\u001B[1m";
+    char ANSI_RESET[9] = "\u001B[0m";
 public:
     BudgetManager(int idLoggedInUser) : ID_LOGGED_IN_USER(idLoggedInUser) {
         incomes = xmlIncomes.loadIncomesFromXmlFile(ID_LOGGED_IN_USER);
@@ -41,7 +43,10 @@ public:
     void addExpense();
     void showAllIncomes();
     void showAllExpenses();
+    void showBalanceSheet(int startingDate, int endingDate);
     void showBalanceSheetForCurrentMonth();
+    void showBalanceSheetForPreviousMonth();
+    void showBalanceSheetForSelectedPeriod();
 };
 
 #endif

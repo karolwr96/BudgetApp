@@ -7,6 +7,7 @@
 #include "User.h"
 #include "AuxiliaryFunctions.h"
 #include "XmlFileWithUsers.h"
+#include <conio.h>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ class UserManager {
     User enterTheDataOfNewUser();
     int getIdForNewUser();
     bool doesLoginExists(string login);
+    string takePasswdFromUser();
 
 public :
     UserManager() {

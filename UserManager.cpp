@@ -25,7 +25,7 @@ User UserManager::enterTheDataOfNewUser() {
     newUser.setLogin(login);
 
     cout << "Enter password: ";
-    password = AuxiliaryFunctions::loadLine();
+    password = takePasswdFromUser();
     newUser.setPassword(password);
 
     cout << "Enter name: ";
@@ -86,7 +86,7 @@ void UserManager::loginUser() {
     login = AuxiliaryFunctions::loadLine();
 
     cout << "Enter password: ";
-    password = AuxiliaryFunctions::loadLine();
+    password = takePasswdFromUser();
 
     for (unsigned int i = 0; i < users.size(); i++) {
         if (login == users[i].getLogin()) {
@@ -117,10 +117,9 @@ void UserManager::logOutUser() {
 void UserManager::changePasswordLoggedInUser() {
     string userLogin;
     cout << endl << "Enter new password: ";
-    string newPassword = AuxiliaryFunctions::loadLine();
-
+    string newPassword = takePasswdFromUser();
     cout << "Enter your new password again: ";
-    string newPasswordAgain = AuxiliaryFunctions::loadLine();
+    string newPasswordAgain = takePasswdFromUser();
 
     if (newPasswordAgain == newPassword) {
         for (unsigned int i = 0; i < users.size(); i++) {
@@ -134,16 +133,42 @@ void UserManager::changePasswordLoggedInUser() {
         cout << "Password has been changed." << endl << endl;
         system("pause");
         return;
-    }
-    else {
+    } else {
         cout << "Passwords are not the same." << endl << endl;
         system("pause");
         return;
     }
-
-
 }
 
+enum IN {
+    IN_BACK = 8,
+    IN_RET = 13
+};
+
+string UserManager::takePasswdFromUser() {
+    char sp = '*';
+    string passwd = "";
+    char ch_ipt;
+    while (true) {
+        ch_ipt = getch();
+
+        if (ch_ipt == IN::IN_RET) {
+            cout << endl;
+            return passwd;
+        } else if (ch_ipt == IN::IN_BACK
+                   && passwd.length() != 0) {
+            passwd.pop_back();
+            cout << "\b \b";
+
+            continue;
+        } else if (ch_ipt == IN::IN_BACK
+                   && passwd.length() == 0) {
+            continue;
+        }
+        passwd.push_back(ch_ipt);
+        cout << sp;
+    }
+}
 
 
 
