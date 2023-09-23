@@ -25,6 +25,7 @@ class BudgetManager {
     XmlFileWithBalanceChange xmlIncomes;
     XmlFileWithBalanceChange xmlExpenses;
 
+
     double roundingNumber(string numberToRound);
     double inputNumber();
 

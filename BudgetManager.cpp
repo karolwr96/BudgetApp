@@ -30,7 +30,8 @@ void::BudgetManager::addIncome() {
     newIncome.setAmount(inputNumber());
 
     newIncome.setUserId(ID_LOGGED_IN_USER);
-    newIncome.setIncomeId (123);
+    newIncome.setIncomeId(xmlIncomes.getLastIncomeId() + 1);
+    xmlIncomes.setLastIncomeId(xmlIncomes.getLastIncomeId() + 1);
 
     incomes.push_back(newIncome);
 
@@ -71,7 +72,8 @@ void BudgetManager::addExpense() {
     newExpense.setAmount(inputNumber());
 
     newExpense.setUserId(ID_LOGGED_IN_USER);
-    newExpense.setExpenseId (123);
+    newExpense.setExpenseId(xmlExpenses.getLastExpenseId() + 1);
+    xmlExpenses.setLastExpenseId((xmlExpenses.getLastExpenseId() + 1));
 
     expenses.push_back(newExpense);
 

@@ -26,7 +26,7 @@ void XmlFileWithBalanceChange::addIncomeToFile(Income newIncome) {
     xmlIncomes.AddElem("Income");
     xmlIncomes.IntoElem();
     xmlIncomes.AddElem("UserId", newIncome.getUserId());
-    xmlIncomes.AddElem("IncomeId", 2);
+    xmlIncomes.AddElem("IncomeId", newIncome.getIncomeId());
     xmlIncomes.AddElem("Date", newIncome.getDate());
     xmlIncomes.AddElem("Item", newIncome.getItem());
     xmlIncomes.AddElem("Amount", to_string(newIncome.getAmount()));
@@ -43,7 +43,7 @@ void XmlFileWithBalanceChange::addExpenseToFile(Expense newExpense) {
     xmlExpenses.AddElem("Expense");
     xmlExpenses.IntoElem();
     xmlExpenses.AddElem("UserId", newExpense.getUserId());
-    xmlExpenses.AddElem("ExpenseId", 2);
+    xmlExpenses.AddElem("ExpenseId", newExpense.getExpenseId());
     xmlExpenses.AddElem("Date", newExpense.getDate());
     xmlExpenses.AddElem("Item", newExpense.getItem());
     xmlExpenses.AddElem("Amount", to_string(newExpense.getAmount()));
@@ -67,6 +67,7 @@ vector <Income> XmlFileWithBalanceChange::loadIncomesFromXmlFile(int idLoggedInU
 
             xmlIncomes.FindChildElem("IncomeId");
             loadedIncome.setIncomeId(stoi(xmlIncomes.GetChildData()));
+            lastIncomeId = stoi(xmlIncomes.GetChildData());
 
             xmlIncomes.FindChildElem("Date");
             loadedIncome.setDate(stoi(xmlIncomes.GetChildData()));
@@ -98,6 +99,7 @@ vector <Expense> XmlFileWithBalanceChange::loadExpensesFromXmlFile(int idLoggedI
 
             xmlExpenses.FindChildElem("ExpenseId");
             loadedExpense.setExpenseId(stoi(xmlExpenses.GetChildData()));
+            lastExpenseId = stoi(xmlExpenses.GetChildData());
 
             xmlExpenses.FindChildElem("Date");
             loadedExpense.setDate(stoi(xmlExpenses.GetChildData()));
@@ -112,4 +114,22 @@ vector <Expense> XmlFileWithBalanceChange::loadExpensesFromXmlFile(int idLoggedI
         }
     }
     return expensesFromFile;
+}
+
+int XmlFileWithBalanceChange::getLastIncomeId() {
+    return lastIncomeId;
+}
+
+int XmlFileWithBalanceChange::getLastExpenseId() {
+    return lastExpenseId;
+}
+
+void XmlFileWithBalanceChange::setLastIncomeId(int nextId) {
+    lastIncomeId = nextId;
+    return;
+}
+
+void XmlFileWithBalanceChange::setLastExpenseId(int nextId) {
+    lastExpenseId = nextId;
+    return;
 }
