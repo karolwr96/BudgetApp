@@ -30,6 +30,7 @@ class BudgetManager {
 
     void sortIncomeVector(vector <Income> &changeOfDataVector);
     void sortExpenseVector(vector <Expense> &changeOfDataVector);
+    void showTotalBalance(double revenues, double outlay);
 
 public:
     BudgetManager(int idLoggedInUser) : ID_LOGGED_IN_USER(idLoggedInUser) {
@@ -40,6 +41,7 @@ public:
     void addExpense();
     void showAllIncomes();
     void showAllExpenses();
+    void showBalanceSheetForCurrentMonth();
 };
 
 #endif

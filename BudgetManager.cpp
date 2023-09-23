@@ -185,3 +185,48 @@ void BudgetManager::sortExpenseVector(vector <Expense> &changeOfDataVector) {
     });
 }
 
+void BudgetManager::showBalanceSheetForCurrentMonth() {
+    if (incomes.empty() & expenses.empty()) {
+        cout << "No data." << endl << endl;
+        system("pause");
+        return;
+    } else {
+        int cutOffDate = stoi(to_string(DateFunctions::loadCurrentYear()) + DateFunctions::checkFormat(to_string(DateFunctions::loadCurrentMonth())) + "01");
+        double revenues = 0;
+        double outlay = 0;
+
+        sortIncomeVector(incomes);
+        sortExpenseVector(expenses);
+
+        cout << endl << "Revenues: " << endl;
+        for (unsigned int i = 0; i < incomes.size(); i++) {
+            if (incomes[i].getDate() >= cutOffDate) {
+                DateFunctions::printDateInCorrectFormat(incomes[i].getDate());
+                revenues += incomes[i].getAmount();
+                cout << endl << "Item: " << incomes[i].getItem() << endl;
+                cout << "Amount: " << incomes[i].getAmount() << endl;
+                cout << endl;
+            }
+        }
+        cout << "Expenses: " << endl;
+        for (unsigned int i = 0; i < expenses.size(); i++) {
+            if (expenses[i].getDate() >= cutOffDate) {
+                DateFunctions::printDateInCorrectFormat(expenses[i].getDate());
+                outlay += expenses[i].getAmount();
+                cout << endl << "Item: " << expenses[i].getItem() << endl;
+                cout << "Amount: " << expenses[i].getAmount() << endl;
+                cout << endl;
+            }
+        }
+        showTotalBalance(revenues,outlay);
+        system("pause");
+    }
+}
+
+void BudgetManager::showTotalBalance(double revenues, double outlay) {
+    double sum = revenues - outlay;
+    cout << "Total income: " << revenues << endl;
+    cout << "Total expenses: " << outlay << endl;
+    cout << endl << "Balance: " << sum << endl << endl;
+}
+
