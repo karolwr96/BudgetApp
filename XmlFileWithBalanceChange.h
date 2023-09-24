@@ -19,7 +19,6 @@ class XmlFileWithBalanceChange {
     int lastExpenseId;
 
     void loadFilesToProgramm();
-
 public :
     XmlFileWithBalanceChange() {
         loadFilesToProgramm();

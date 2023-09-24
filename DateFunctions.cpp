@@ -3,19 +3,15 @@
 int DateFunctions::loadCurrentDate() {
     string currentDate = "", currentYear = "", currentMonth = "", currentDay = "";
 
-    SYSTEMTIME st;
-    GetSystemTime(&st);
-
-    currentYear = to_string(st.wYear);
-    currentMonth = to_string(st.wMonth);
-    currentDay = to_string(st.wDay);
+    currentYear = to_string(loadCurrentYear());
+    currentMonth = to_string(loadCurrentMonth());
+    currentDay = to_string(loadCurrentDay());
 
     currentMonth = checkFormat(currentMonth);
     currentDay = checkFormat(currentDay);
 
     currentDate = currentYear + currentMonth + currentDay;
-    int dateToReturn = stoi(currentDate);
-    return dateToReturn;
+    return stoi(currentDate);
 }
 
 string DateFunctions::checkFormat(string dataToCheck) {
@@ -30,29 +26,23 @@ string DateFunctions::checkFormat(string dataToCheck) {
 }
 
 int DateFunctions::loadCurrentYear() {
-    int currentYear;
-
     SYSTEMTIME st;
     GetSystemTime(&st);
-    currentYear = (st.wYear);
+    int currentYear = (st.wYear);
     return currentYear;
 }
 
 int DateFunctions::loadCurrentMonth() {
-    int currentMonth;
-
     SYSTEMTIME st;
     GetSystemTime(&st);
-    currentMonth = (st.wMonth);
+    int currentMonth = (st.wMonth);
     return currentMonth;
 }
 
 int DateFunctions::loadCurrentDay() {
-    int currentDay;
-
     SYSTEMTIME st;
     GetSystemTime(&st);
-    currentDay = (st.wDay);
+    int currentDay = (st.wDay);
     return currentDay;
 }
 
@@ -105,7 +95,6 @@ int DateFunctions::loadEndDateOfPreviousMonth() {
     }
     lastDayOfPreviousMonth = howManyDaysAreInMonth(to_string(yearOfPreviousMonth), to_string(previousMonth));
     endDateOfPreviousMonth = to_string(yearOfPreviousMonth) + checkFormat(to_string(previousMonth)) + checkFormat(to_string(lastDayOfPreviousMonth));
-
     return stoi(endDateOfPreviousMonth);
 }
 
@@ -154,7 +143,6 @@ string DateFunctions::inputYear() {
             cout << "The program supports dates from 2000.01.01. Please try again." << endl << endl;
             isYearOk = false;
         }
-
     } while (!isYearOk);
     return year;
 }
@@ -220,14 +208,13 @@ string DateFunctions::inputDay(string enteredYear, string enteredMonth) {
 }
 
 int DateFunctions::enterDateFromKeyboard() {
-    string year = "", month = "", day = "", date = "";
+    string year = "", month = "", day = "", dateToReturn = "";
     year = inputYear();
     month = inputMonth(year);
     day = inputDay(year, month);
-    date = year + month + day;
+    dateToReturn = year + month + day;
 
-    int dateToReturn = stoi(date);
-    return dateToReturn;
+    return stoi(dateToReturn);
 }
 
 void DateFunctions::printDateInCorrectFormat(int date) {

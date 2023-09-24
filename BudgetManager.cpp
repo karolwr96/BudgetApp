@@ -82,7 +82,7 @@ void BudgetManager::addExpense() {
     system("pause");
     return;
 }
-void BudgetManager::showAllIncomes() {
+/*void BudgetManager::showAllIncomes() {
     if (incomes.empty()) {
         cout << "No data." << endl << endl;
         system("pause");
@@ -118,7 +118,7 @@ void BudgetManager::showAllExpenses() {
     }
     system("pause");
     return;
-}
+}*/
 
 double BudgetManager::roundingNumber(string numberToRound) {
     string roundedNumber = "";

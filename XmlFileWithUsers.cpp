@@ -71,4 +71,5 @@ void XmlFileWithUsers::changePasswordInFile(string newPassword, string userLogin
         }
     }
     xmlUsers.Save("users.xml");
+    return;
 }

@@ -15,7 +15,6 @@ class BudgetApp {
     Menu menu;
 
     void showOptionsFromMainMenu();
-
 public:
     BudgetApp() {
         budgetManager = NULL;

@@ -25,7 +25,6 @@ class BudgetManager {
     XmlFileWithBalanceChange xmlIncomes;
     XmlFileWithBalanceChange xmlExpenses;
 
-
     double roundingNumber(string numberToRound);
     double inputNumber();
 
@@ -42,8 +41,8 @@ public:
     };
     void addIncome();
     void addExpense();
-    void showAllIncomes();
-    void showAllExpenses();
+    //void showAllIncomes(); admin funcion
+    //void showAllExpenses(); admin funcion
     void showBalanceSheet(int startingDate, int endingDate);
     void showBalanceSheetForCurrentMonth();
     void showBalanceSheetForPreviousMonth();

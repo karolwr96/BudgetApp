@@ -31,7 +31,7 @@ public :
     int getIdLoggedInUser();
     void changePasswordLoggedInUser();
     void logOutUser();
-    void showAllUsers();
+    //void showAllUsers(); admin function
 };
 
 #endif

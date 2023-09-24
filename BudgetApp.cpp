@@ -15,9 +15,9 @@ void BudgetApp::showOptionsFromMainMenu() {
                     budgetManager = new BudgetManager(userManager.getIdLoggedInUser());
                 }
                 break;
-            case '3':
-                userManager.showAllUsers();
-                break;
+            /* case '3':
+                 userManager.showAllUsers();
+                 break; */
             case '0':
                 menu.closeTheProgram();
                 break;
@@ -37,20 +37,20 @@ void BudgetApp::showOptionsFromMainMenu() {
                 budgetManager->addExpense();
                 break;
             case '3':
-                budgetManager->showAllIncomes();
-                break;
-            case '4':
-                budgetManager->showAllExpenses();
-                break;
-            case '5':
                 budgetManager->showBalanceSheetForCurrentMonth();
                 break;
-            case '6':
+            case '4':
                 budgetManager->showBalanceSheetForPreviousMonth();
                 break;
-            case '7':
+            case '5':
                 budgetManager->showBalanceSheetForSelectedPeriod();
                 break;
+            /*case '6':
+            budgetManager->showAllIncomes();
+            break;
+            case '7':
+            budgetManager->showAllExpenses();
+            break;*/
             case '8':
                 userManager.changePasswordLoggedInUser();
                 break;

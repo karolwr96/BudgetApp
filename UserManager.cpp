@@ -49,7 +49,7 @@ void UserManager::userRegistration() {
     return;
 }
 
-void UserManager::showAllUsers() {
+/* void UserManager::showAllUsers() {
     for (unsigned int i = 0; i < users.size(); i++) {
         cout << users[i].getId() << endl;
         cout << users[i].getLogin() << endl;
@@ -60,7 +60,7 @@ void UserManager::showAllUsers() {
     }
     system("pause");
     return;
-}
+}*/
 
 int UserManager::getIdForNewUser() {
     if (users.empty())
